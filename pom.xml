@@ -107,5 +107,6 @@
 
   	<modules>
     	<module>magno-modulus-webapp</module>
-  	</modules>
+    	<module>magno-rest</module>
+  </modules>
 </project>

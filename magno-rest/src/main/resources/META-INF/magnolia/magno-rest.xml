@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "module.dtd" >
+<module>
+  	<name>magno-rest</name>
+  	<displayName>${project.name}</displayName>
+  	<description>${project.description}</description>
+  	<class>nl.magnomodulus.rest.RestModule</class>
+  	<versionHandler>nl.magnomodulus.rest.setup.RestModuleVersionHandler</versionHandler>
+  	<version>${project.version}</version>
+
+  	<dependencies>
+    	<dependency>
+      		<name>core</name>
+      		<version>5.0.4/*</version>
+    	</dependency>
+  	</dependencies>
+  	<servlets>
+        <servlet>
+            <name>Spring Dispatcher Rest Servlet</name>
+            <class>org.springframework.web.servlet.DispatcherServlet</class>
+            <comment>Rest based repository module</comment>
+            <mappings>
+                <mapping>/magnolia-rest/*</mapping>
+            </mappings>
+            <params>
+            	<param>
+                    <name>contextClass</name>
+                    <value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</value>
+                </param>
+                <param>
+                    <name>contextConfigLocation</name>
+                    <value>nl.magnomodulus.rest.config.server.WebDispatcherConfig</value>
+                </param>
+            </params>
+        </servlet>
+    </servlets>
+</module>
