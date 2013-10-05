@@ -108,5 +108,6 @@
   	<modules>
     	<module>magno-modulus-webapp</module>
     	<module>magno-rest</module>
-  </modules>
+    	<module>magno-spring-util</module>
+  	</modules>
 </project>
