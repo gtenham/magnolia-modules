@@ -5,7 +5,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-import nl.magnomodulus.rest.service.Workspace;
+import nl.magnomodulus.rest.domain.Workspace;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;

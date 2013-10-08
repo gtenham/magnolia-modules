@@ -1,9 +1,8 @@
-package nl.magnomodulus.rest.service;
+package nl.magnomodulus.rest.domain;
 
 import java.util.List;
 
 import javax.jcr.Node;
-import javax.jcr.Property;
 
 public class WorkspaceNode {
 	
@@ -11,7 +10,7 @@ public class WorkspaceNode {
 	private String name;
 	private String uuid;
 	private String path;
-	private List<Property> properties;
+	private PropertyMap properties;
 	private List<Node> childnodes;
 	
 	public String getWorkspace() {
@@ -38,10 +37,10 @@ public class WorkspaceNode {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public List<Property> getProperties() {
+	public PropertyMap getProperties() {
 		return properties;
 	}
-	public void setProperties(List<Property> properties) {
+	public void setProperties(PropertyMap properties) {
 		this.properties = properties;
 	}
 	public List<Node> getChildnodes() {

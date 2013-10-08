@@ -31,8 +31,10 @@ public class PredicateUtil {
         public boolean evaluateTyped(Node node) {
             try {
                 String nodeTypeName = node.getPrimaryNodeType().getName();
+                String nodeWorkspace = node.getSession().getWorkspace().getName();
+                
                 RestModule restModule = RestModule.getInstance();
-                List<String> nodetypes = restModule.getWorkspaceNodeFilter();
+                List<String> nodetypes = restModule.getWorkspaceNodeFilter(nodeWorkspace);
                 
                 return nodetypes.contains(nodeTypeName);
             } catch (RepositoryException e) {

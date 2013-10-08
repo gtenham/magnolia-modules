@@ -1,4 +1,4 @@
-package nl.magnomodulus.rest.service;
+package nl.magnomodulus.rest.domain;
 
 import java.util.List;
 

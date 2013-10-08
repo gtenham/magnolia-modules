@@ -17,10 +17,10 @@ import org.springframework.util.StringUtils;
  * If you don't need this, simply remove the reference to this class in the module descriptor xml.
  */
 public class RestModule {
-private static RestModule instance;
+	
+	private static RestModule instance;
 	
 	private Map<String, WorkspaceConfig> workspaces = new HashMap<String, WorkspaceConfig>();
-	private String currentWorkspace;
 	
 	public RestModule() {
 		instance = this;
@@ -38,18 +38,10 @@ private static RestModule instance;
 		this.workspaces = workspaces;
 	}
 
-	public String getCurrentWorkspace() {
-		return currentWorkspace;
-	}
-
-	public void setCurrentWorkspace(String currentWorkspace) {
-		this.currentWorkspace = currentWorkspace;
-	}
-
-	public String[] getWorkspacePropertyFilter() {
+	public String[] getWorkspacePropertyFilter(String workspacename) {
 		String[] defaultFilter = new String[] {""};
-		if (!StringUtils.isEmpty(currentWorkspace)) {
-			Collection<String> values = workspaces.get(currentWorkspace).getPropertyFilter().values();
+		if (!StringUtils.isEmpty(workspacename)) {
+			Collection<String> values = workspaces.get(workspacename).getPropertyFilter().values();
 			if (!values.isEmpty()) {
 				return values.toArray(defaultFilter);
 			}
@@ -57,10 +49,10 @@ private static RestModule instance;
 		return new String[] {""};
 	}
 
-	public List<String> getWorkspaceNodeFilter() {
+	public List<String> getWorkspaceNodeFilter(String workspacename) {
 		List<String> filter = new ArrayList<String>(0);
-		if (!StringUtils.isEmpty(currentWorkspace)) {
-			Collection<String> values = workspaces.get(currentWorkspace).getNodetypeFilter().values();
+		if (!StringUtils.isEmpty(workspacename)) {
+			Collection<String> values = workspaces.get(workspacename).getNodetypeFilter().values();
 			if (!values.isEmpty()) {
 				return new ArrayList<String>(values);
 			}

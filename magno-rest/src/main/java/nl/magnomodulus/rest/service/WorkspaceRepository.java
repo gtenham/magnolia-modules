@@ -2,6 +2,9 @@ package nl.magnomodulus.rest.service;
 
 import java.util.List;
 
+import nl.magnomodulus.rest.domain.Workspace;
+import nl.magnomodulus.rest.domain.WorkspaceNode;
+
 public interface WorkspaceRepository {
 
 	List<Workspace> findWorkspaces();

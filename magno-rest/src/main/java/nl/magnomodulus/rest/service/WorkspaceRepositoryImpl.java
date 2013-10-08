@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import javax.jcr.Node;
-import javax.jcr.Property;
-import javax.jcr.PropertyIterator;
 import javax.jcr.Session;
 
 import nl.magnomodulus.rest.util.ConfigMapper;
@@ -19,6 +17,9 @@ import nl.magnomodulus.rest.web.ResourceNotFoundException;
 import nl.magnomodulus.rest.RestModule;
 import nl.magnomodulus.rest.config.MagnoliaConfig;
 import nl.magnomodulus.rest.config.WorkspaceConfig;
+import nl.magnomodulus.rest.domain.PropertyMap;
+import nl.magnomodulus.rest.domain.Workspace;
+import nl.magnomodulus.rest.domain.WorkspaceNode;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,16 +52,13 @@ public class WorkspaceRepositoryImpl implements WorkspaceRepository {
 		
 		restModule = RestModule.getInstance();
 		if (!restModule.getWorkspaces().containsKey(workspacename)) {
-			restModule.setCurrentWorkspace(null);
 			throw new ResourceNotFoundException("Unable to find workspace with name=" + workspacename);
 		}
-		restModule.setCurrentWorkspace(workspacename);
 		
 		Workspace workspace = mapper.map(restModule.getWorkspaces().get(workspacename));
 		
 		try {
 			Session session = MgnlContext.getJCRSession(workspacename);
-			//Session session = LifeTimeJCRSessionUtil.getSession(workspacename);
 			
 			Node root = SessionUtil.getNode(session, "/");
 			// Provide all allowed nodes to be returned!
@@ -77,17 +75,15 @@ public class WorkspaceRepositoryImpl implements WorkspaceRepository {
 	public WorkspaceNode findWorkspaceNode(String workspacename, String nodepath) {
 		restModule = RestModule.getInstance();
 		if (!restModule.getWorkspaces().containsKey(workspacename)) {
-			restModule.setCurrentWorkspace(null);
 			throw new ResourceNotFoundException("Unable to find workspace with name=" + workspacename);
 		}
-		restModule.setCurrentWorkspace(workspacename);
 		
 		List<Node> childNodes = new ArrayList<Node>(0);
 		WorkspaceNode workspaceNode = new WorkspaceNode();
+		String[] propertyFilter = restModule.getWorkspacePropertyFilter(workspacename);
 		
 		try {
 			Session session = MgnlContext.getJCRSession(workspacename);
-			//Session session = LifeTimeJCRSessionUtil.getSession(workspacename);
 			
 			Node node = SessionUtil.getNode(session, nodepath);
 			// Provide all allowed nodes to be returned!
@@ -99,11 +95,7 @@ public class WorkspaceRepositoryImpl implements WorkspaceRepository {
 			workspaceNode.setPath(node.getPath());
 			
 			// Provide all allowed properties to be returned!
-			PropertyIterator it = node.getProperties(restModule.getWorkspacePropertyFilter());
-			List<Property> properties = new ArrayList<Property>(0);
-			while (it.hasNext()) {
-				properties.add(it.nextProperty());
-			}
+			PropertyMap properties = new PropertyMap(node.getProperties(propertyFilter));
 			
 			workspaceNode.setProperties(properties);
 			workspaceNode.setChildnodes(childNodes);

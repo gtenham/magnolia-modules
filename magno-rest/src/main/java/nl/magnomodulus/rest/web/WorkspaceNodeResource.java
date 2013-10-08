@@ -1,6 +1,6 @@
 package nl.magnomodulus.rest.web;
 
-import java.util.Map;
+import nl.magnomodulus.rest.domain.PropertyMap;
 
 import org.springframework.hateoas.ResourceSupport;
 
@@ -10,7 +10,7 @@ public class WorkspaceNodeResource extends ResourceSupport {
 	private String name;
 	private String uuid;
 	private String path;
-	private Map<String, Object> properties;
+	private PropertyMap properties;
 	
 	public String getWorkspace() {
 		return workspace;
@@ -47,11 +47,11 @@ public class WorkspaceNodeResource extends ResourceSupport {
 		this.path = path;
 	}
 
-	public Map<String, Object> getProperties() {
+	public PropertyMap getProperties() {
 		return properties;
 	}
 
-	public void setProperties(Map<String, Object> properties) {
+	public void setProperties(PropertyMap properties) {
 		this.properties = properties;
 	}
 

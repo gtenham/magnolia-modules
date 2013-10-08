@@ -60,6 +60,11 @@ public class RepositoryBrowserController {
 		return new ResponseEntity<WorkspaceNodeResource>(resource, HttpStatus.OK);
 	}
 	
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+	public ResponseEntity<String> methodNotAllowed( HttpServletRequest request) {
+		return new ResponseEntity<String>("Method " + request.getMethod() + " not implemented at the moment.", HttpStatus.METHOD_NOT_ALLOWED);
+	}
+	
 	@ExceptionHandler
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
