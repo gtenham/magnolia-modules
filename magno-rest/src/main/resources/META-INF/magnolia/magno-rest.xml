@@ -4,14 +4,14 @@
   	<name>magno-rest</name>
   	<displayName>${project.name}</displayName>
   	<description>${project.description}</description>
-  	<class>nl.magnomodulus.rest.RestModule</class>
-  	<versionHandler>nl.magnomodulus.rest.setup.RestModuleVersionHandler</versionHandler>
+  	<class>nl.magnodom.rest.RestModule</class>
+  	<versionHandler>nl.magnodom.rest.setup.RestModuleVersionHandler</versionHandler>
   	<version>${project.version}</version>
 
   	<dependencies>
     	<dependency>
       		<name>core</name>
-      		<version>5.0.4/*</version>
+      		<version>5/*</version>
     	</dependency>
   	</dependencies>
   	<servlets>
@@ -29,7 +29,7 @@
                 </param>
                 <param>
                     <name>contextConfigLocation</name>
-                    <value>nl.magnomodulus.rest.config.server.WebDispatcherConfig</value>
+                    <value>nl.magnodom.rest.config.server.WebDispatcherConfig</value>
                 </param>
             </params>
         </servlet>

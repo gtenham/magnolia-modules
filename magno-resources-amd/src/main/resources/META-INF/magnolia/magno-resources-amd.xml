@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "module.dtd" >
+<module>
+  	<name>magno-resources-amd</name>
+  	<displayName>${project.name}</displayName>
+  	<description>${project.description}</description>
+  	<class>nl.magnodom.resources.ResourcesModule</class>
+  	<versionHandler>nl.magnodom.resources.setup.ResourcesModuleVersionHandler</versionHandler>
+  	<version>${project.version}</version>
+
+	<components>
+		<id>app-resources-amd</id>
+	</components>
+
+	<components>
+		<id>app-resources-amd-browser</id>
+	</components>
+
+	<components>
+		<id>app-resources-amd-detail</id>
+	</components>
+	
+  	<dependencies>
+    	<dependency>
+      		<name>core</name>
+      		<version>5/*</version>
+    	</dependency>
+    	<dependency>
+			<name>ui-admincentral</name>
+			<version>5/*</version>
+		</dependency>
+    	<dependency>
+      		<name>resources</name>
+      		<version>2/*</version>
+    	</dependency>
+  	</dependencies>
+  	<!-- servlets>
+  		<servlet>
+  			<name>MiniflyServlet</name>
+  			<class>nl.magnodom.resources.MiniflyServlet</class>
+  			<comment>MiniFly Resources Servlet</comment>
+  			<mappings>
+  				<mapping>/minifly/*</mapping>
+  			</mappings>
+  		</servlet>
+  	</servlets-->
+  	<repositories>
+       	<repository>
+         	<name>magnolia</name>
+         	<workspaces>
+           		<workspace>resources</workspace>
+         	</workspaces>
+         	<nodeTypeFile>/mgnl-nodetypes/resources-amd-nodetypes.xml</nodeTypeFile>
+       	</repository>
+    </repositories>
+</module>
